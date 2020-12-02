@@ -21,6 +21,10 @@ public class Post {
 		return id;
 	}
 	
+	public void setId(String id) {
+		this.id = id;		
+	}
+	
 	public String getText() {
 		return text;
 	}
@@ -32,6 +36,5 @@ public class Post {
 	public void setUpvote(int upvote) {
 		this.upvote = upvote;
 	}
-	
 	
 }
