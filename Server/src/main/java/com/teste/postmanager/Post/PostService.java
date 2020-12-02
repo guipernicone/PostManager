@@ -37,7 +37,7 @@ public class PostService {
 		Pageable page = PageRequest.of(pageNumber, size, Direction.ASC, "upvote");
 		
 		Page<Post> posts = postRepository.findAll(page);
-		
+
 		return posts;
 	}
 	

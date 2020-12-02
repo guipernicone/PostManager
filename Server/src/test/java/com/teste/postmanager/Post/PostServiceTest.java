@@ -1,16 +1,26 @@
 package com.teste.postmanager.Post;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.jupiter.api.BeforeEach;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 
 @SpringBootTest
 public class PostServiceTest {
@@ -21,11 +31,6 @@ public class PostServiceTest {
 	@InjectMocks
 	private PostService postService;
 	
-//	@BeforeEach
-//	public void setup() {
-//		Post post = new Post("First post test");
-//	}
-	
 	@Test
 	public void testCreatePost() {
 		postService.createPost("First post test");
@@ -34,5 +39,48 @@ public class PostServiceTest {
 		verify(postRepository, times(1)).save(argument.capture());
 		
 		assertEquals("First post test", argument.getValue().getText());
+	}
+	
+	@Test
+	public void testGetPostList() {
+		Pageable page = PageRequest.of(0, 1, Direction.ASC, "upvote");
+		List<Post> postList = new ArrayList<Post>();
+		Post post = new Post("First post test");
+		postList.add(post);
+		Page<Post> pagePost = new PageImpl<Post>(postList);
+		
+		when(postRepository.findAll(page)).thenReturn(pagePost);
+	
+		Page<Post> res = postService.getPostList(0,1);
+		
+		List<Post> resultList = res.getContent();
+		
+		assertTrue(resultList.contains(post));
+		assertEquals(res.getTotalElements(), 1);
+	}
+	
+	@Test
+	public void testUpdateUpvoteWhenPresent() {
+		Post post = new Post("First post test");
+		Optional<Post> optionalPost = Optional.of(post);
+		when(postRepository.findById("1")).thenReturn(optionalPost);
+		
+		String res = postService.updateUpvote("1");
+		
+		ArgumentCaptor<Post> argument = ArgumentCaptor.forClass(Post.class);
+		verify(postRepository, times(1)).save(argument.capture());
+		assertEquals(res, "1");
+	}
+	
+	@Test
+	public void testUpdateUpvoteWhenEmpty() {
+		Optional<Post> optionalPost = Optional.empty();
+		when(postRepository.findById("1")).thenReturn(optionalPost);
+		
+		String res = postService.updateUpvote("1");
+		
+		ArgumentCaptor<Post> argument = ArgumentCaptor.forClass(Post.class);
+		verify(postRepository, times(0)).save(argument.capture());
+		assertNull(res);
 	}
 }
