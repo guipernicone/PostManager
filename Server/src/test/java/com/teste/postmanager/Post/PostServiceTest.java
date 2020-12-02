@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.any;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -33,12 +35,16 @@ public class PostServiceTest {
 	
 	@Test
 	public void testCreatePost() {
-		postService.createPost("First post test");
+		Post post = new Post("teste");
+		post.setId("id");
+		when(postRepository.save(any())).thenReturn(post);
+		String id = postService.createPost("First post test");
 		
 		ArgumentCaptor<Post> argument = ArgumentCaptor.forClass(Post.class);
 		verify(postRepository, times(1)).save(argument.capture());
 		
 		assertEquals("First post test", argument.getValue().getText());
+		assertEquals("id", id);
 	}
 	
 	@Test
@@ -56,7 +62,7 @@ public class PostServiceTest {
 		List<Post> resultList = res.getContent();
 		
 		assertTrue(resultList.contains(post));
-		assertEquals(res.getTotalElements(), 1);
+		assertEquals(1, res.getTotalElements());
 	}
 	
 	@Test
@@ -69,7 +75,7 @@ public class PostServiceTest {
 		
 		ArgumentCaptor<Post> argument = ArgumentCaptor.forClass(Post.class);
 		verify(postRepository, times(1)).save(argument.capture());
-		assertEquals(res, "1");
+		assertEquals("1", res);
 	}
 	
 	@Test

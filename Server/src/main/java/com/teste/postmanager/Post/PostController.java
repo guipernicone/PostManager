@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController; 
 
-@RestController()
+@RestController
 @RequestMapping("/post")
 public class PostController {
 
@@ -21,8 +21,8 @@ public class PostController {
 	
 	@PostMapping
 	public ResponseEntity<String> newPost(@RequestParam String text) {
-		postService.createPost(text);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Post Created");
+		String id = postService.createPost(text);
+		return ResponseEntity.status(HttpStatus.CREATED).body(id);
 	}
 	
 	@GetMapping

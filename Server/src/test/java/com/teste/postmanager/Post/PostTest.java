@@ -23,10 +23,19 @@ public class PostTest {
 	}
 	
 	@Test
+	public void testSetId() {
+		post.setId("1");
+		
+		String id = post.getId();
+		
+		assertEquals("1", id);
+	}
+	
+	@Test
 	public void testGetText() {
 		String text = post.getText();
 		
-		assertEquals(text, "Test post");
+		assertEquals("Test post", text);
 	}
 	
 	@Test
@@ -35,13 +44,13 @@ public class PostTest {
 		
 		int upvote = post.getUpvote();
 		
-		assertEquals(upvote, 1);
+		assertEquals(1, upvote);
 	}
 	
 	@Test
 	public void testGetUpvote() {
 		int upvote = post.getUpvote();
 		
-		assertEquals(upvote, 0);
+		assertEquals(0, upvote);
 	}
 }

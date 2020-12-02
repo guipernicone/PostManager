@@ -19,10 +19,14 @@ public class PostService {
 	 * Create a new post
 	 * 
 	 * @param text The post text
+	 * 
+	 * @return The post id
 	 */
-	public void createPost(String text) {
+	public String createPost(String text) {
 		Post post = new Post(text);
-		postRepository.save(post);
+		Post postCreated = postRepository.save(post);
+		
+		return postCreated.getId();
 	}
 	
 	/**
@@ -46,7 +50,7 @@ public class PostService {
 	 * 
 	 * @param postId The post ID
 	 * 
-	 * @return The new upvote value
+	 * @return The new upvote value, null if no post is found
 	 */
 	public synchronized String updateUpvote(String postId){
 		
