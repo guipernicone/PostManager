@@ -20,6 +20,11 @@ const Home = () => {
     },[content])
 
 
+    /**
+     * Calls the service responsible to send a page request to the API
+     * 
+     * @param String page The page number to request from the API
+     */
     const sendGetPosts = (page) => {
         getPosts(page)
         .then((response) => {
@@ -33,10 +38,16 @@ const Home = () => {
         })
     }
 
+
     const handlePagination = (page) => {
         sendGetPosts(page);
     } 
 
+    /**
+     * Calls the service responsible to update the upvote
+     * 
+     * @param String postId The post id tha will be updated
+     */
     const handleUpvote = (postId) => {
         sendUpvote(postId)
         .then((response) => {
@@ -50,6 +61,11 @@ const Home = () => {
         })
     } 
 
+    /**
+     * Calls the service responsible to send a new post request to the API
+     * 
+     * @param String submit The text to create a post
+     */
     const handlePost = (submit) =>{
         submit.preventDefault();
         submit.stopPropagation();

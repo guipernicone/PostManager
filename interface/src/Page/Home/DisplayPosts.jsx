@@ -3,8 +3,19 @@ import { DisplayPostsStyle } from 'Page/Home/Style/DisplayPostsStyle'
 import Pagination from '@material-ui/lab/Pagination';
 import Post from 'Page/Home/Post';
 
+/**
+ * Post display section
+ * 
+ * @param String posts An array containing the posts
+ * @param String pageNumber The max number of pages
+ * @param function handleUpvote A function responsible to handle the upvote
+ * @param function handlePagination A function responsible to handle the pagination
+ */
 const DisplayPosts = ({posts, pageNumber, handleUpvote, handlePagination}) => {
 
+    /**
+     * Build the post list
+     */
     const buildPosts = () => {
         return posts.map((post, index) =>{
             return <Post key={"post_" + index} postId={post.id} text={post.text} upvote={post.upvote} handleUpvote={handleUpvote}/>

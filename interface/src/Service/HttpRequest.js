@@ -4,7 +4,7 @@ import  { serverIP, serverPort } from 'Config/Config'
 /**
  * Send a http post request
  * 
- * @param {String} params An json object containing the request parameters
+ * @param {String} params A JSON Object containing the request parameters
  * @param {String} route The route to send the request
  */
 export const sendPost = (params, route) => {
@@ -26,7 +26,7 @@ export const sendPost = (params, route) => {
 /**
  * Send a http get request
  * 
- * @param {String} params An json object containing the request parameters
+ * @param {String} params A JSON Object containing the request parameters
  * @param {String} route The route to send the request
  */
 export const sendGet = (params, route) => {
@@ -48,8 +48,8 @@ export const sendGet = (params, route) => {
 /**
  * Send a http patch request
  * 
- * @param {Object} params 
- * @param {String} route 
+ * @param {String} params A JSON Object containing the request parameters
+ * @param {String} route The route to send the request
  */
 export const sendPatch = (body, route) => {
     let config = {
