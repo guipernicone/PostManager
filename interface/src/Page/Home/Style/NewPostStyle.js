@@ -5,7 +5,6 @@ export const NewPostStyle = styled.div`
     .post-form{
         display:flex;
         justify-content:center;
-        /* align-items: center; */
         width:100%;
         height:100%;
     }
@@ -22,8 +21,5 @@ export const NewPostStyle = styled.div`
         height: 100%;
         border: none;
         
-    }
-    .submit-icon{
-
     }
 `

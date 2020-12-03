@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const IndexStyle = styled.div`
     background-color: #121212;
-    /* background-color: red; */
     width: 1200px;
     height: 800px;
     position: absolute;

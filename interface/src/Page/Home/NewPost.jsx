@@ -3,6 +3,11 @@ import { Form, Button } from 'react-bootstrap';
 import { NewPostStyle } from 'Page/Home/Style/NewPostStyle';
 import SendIcon from '@material-ui/icons/Send';
 
+/**
+ * New post Section
+ * 
+ * @param function handlePost A function responsible to handle creation of a new post
+ */
 const NewPost = ({handlePost}) => {
 
     return (
