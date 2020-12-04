@@ -1,5 +1,5 @@
 # PostManager
-This is a small project, and it contains a Java Spring Boot API, with the following functionalities:
+This project contains a Java Spring Boot API, with the following functionalities:
 - Create a post.
 - Upvote a post given an id.
 - Get a list of all subscribed posts.
