@@ -70,11 +70,9 @@ const Home = () => {
         submit.preventDefault();
         submit.stopPropagation();
         let post = submit.target.elements.formBasicPost.value;
-        console.log(post);
 
         sendNewPost(post)    
         .then((response) => {
-            console.log(response);
             if (response.status === 201) {
                 return setContent({});
             }
@@ -88,7 +86,6 @@ const Home = () => {
         <div className="pm-background">
             <IndexStyle>
                 <div className="post-display">
-                    {console.log(content)}
                     {content !== undefined && Object.keys(content).length > 0 && !content.hasOwnProperty("noPost")? 
                         <DisplayPosts 
                             posts={content.content}

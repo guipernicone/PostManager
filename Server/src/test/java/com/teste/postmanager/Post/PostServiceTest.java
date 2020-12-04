@@ -1,6 +1,7 @@
 package com.teste.postmanager.Post;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.times;
@@ -49,7 +50,7 @@ public class PostServiceTest {
 	
 	@Test
 	public void testGetPostList() {
-		Pageable page = PageRequest.of(0, 1, Direction.ASC, "upvote");
+		Pageable page = PageRequest.of(0, 1, Direction.DESC, "date");
 		List<Post> postList = new ArrayList<Post>();
 		Post post = new Post("First post test");
 		postList.add(post);
@@ -62,7 +63,7 @@ public class PostServiceTest {
 		List<Post> resultList = res.getContent();
 		
 		assertTrue(resultList.contains(post));
-		assertEquals(1, res.getTotalElements());
+		assertFalse(res.isEmpty());
 	}
 	
 	@Test

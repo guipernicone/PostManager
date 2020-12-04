@@ -1,5 +1,7 @@
 package com.teste.postmanager.Post;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,11 +12,13 @@ public class Post {
 	private String id;
 	private String text;
 	private int upvote;
+	private Date date;
 	
 	
 	public Post(String text) {
 		this.text = text;
 		this.upvote = 0;
+		this.date = new Date();
 	}
 
 	public String getId() {
@@ -35,6 +39,10 @@ public class Post {
 	
 	public void setUpvote(int upvote) {
 		this.upvote = upvote;
+	}
+
+	public Date getDate() {
+		return date;
 	}
 	
 }

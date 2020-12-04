@@ -18,7 +18,11 @@ const DisplayPosts = ({posts, pageNumber, handleUpvote, handlePagination}) => {
      */
     const buildPosts = () => {
         return posts.map((post, index) =>{
-            return <Post key={"post_" + index} postId={post.id} text={post.text} upvote={post.upvote} handleUpvote={handleUpvote}/>
+            let date = new Date(post.date)
+            let formattedDate = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear() + ' ' +
+                                date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds()
+                                
+            return <Post key={"post_" + index} postId={post.id} text={post.text} upvote={post.upvote} date={formattedDate} handleUpvote={handleUpvote}/>
         }) 
     }
 

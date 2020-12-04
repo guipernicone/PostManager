@@ -7,9 +7,14 @@ export const PostStyle = styled.div`
     height:10%;
     justify-content: center;
     align-items: center;
+    border-bottom: 2px solid rgb(18, 18, 18, 0.5);
 
     .post-text{
-        width:90%;
+        width:75%;
+    }
+    .post-date{
+        width:15%;
+        opacity:0.2;
     }
     .upvote-icon{
         margin-left:10px;
