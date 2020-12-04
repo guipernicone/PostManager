@@ -38,7 +38,7 @@ public class PostService {
 	 * @return The page list
 	 */
 	public Page<Post> getPostList(int pageNumber, int size){
-		Pageable page = PageRequest.of(pageNumber, size, Direction.ASC, "upvote");
+		Pageable page = PageRequest.of(pageNumber, size, Direction.DESC, "date");
 		
 		Page<Post> posts = postRepository.findAll(page);
 

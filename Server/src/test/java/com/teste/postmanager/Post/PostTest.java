@@ -1,7 +1,10 @@
 package com.teste.postmanager.Post;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.Date;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,5 +55,12 @@ public class PostTest {
 		int upvote = post.getUpvote();
 		
 		assertEquals(0, upvote);
+	}
+	
+	@Test
+	public void testGetDate() {
+		Date date = post.getDate();
+		
+		assertNotNull(date);
 	}
 }
